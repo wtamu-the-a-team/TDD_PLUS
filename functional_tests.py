@@ -8,6 +8,7 @@ browser = webdriver.Firefox()
 browser.get('http://localhost:8000')
 
 # assert 'To-Do' in browser.title
+# assert 'To-Do' in browser.title
 
 time.sleep(3)
 
