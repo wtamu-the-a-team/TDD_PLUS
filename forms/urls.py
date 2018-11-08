@@ -1,6 +1,6 @@
 """superlists URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` form routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
 Examples:
 Function views
@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from lists import views
+from forms import views
 
 urlpatterns = [
-    url(r'^new$', views.new_list, name='new_list'),
-    url(r'^(\d+)/$', views.view_list, name='view_list'),
+    url(r'^new$', views.new_form, name='new_form'),
+    url(r'^(\d+)/$', views.view_form, name='view_form'),
     url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
 ]
