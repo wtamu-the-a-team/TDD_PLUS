@@ -66,14 +66,14 @@ class FormAndItemModelsTest(TestCase):
 class NewFormTest(TestCase):
 
     def test_can_save_a_POST_request(self):
-        self.client.post('/forms/new', data={'item_text': 'A new form item'})
+        self.client.post('/forms/new', data={'programName_text': 'A new form item'})
         self.assertEqual(Item.objects.count(), 1)
         new_item = Item.objects.first()
         self.assertEqual(new_item.text, 'A new form item')
 
 
     def test_redirects_after_POST(self):
-        response = self.client.post('/forms/new', data={'item_text': 'A new form item'})
+        response = self.client.post('/forms/new', data={'programName_text': 'A new form item'})
         new_form = Form.objects.first()
         self.assertRedirects(response, f'/forms/{new_form.id}/')
 
@@ -85,7 +85,7 @@ class NewItemTest(TestCase):
 
         self.client.post(
             f'/forms/{correct_form.id}/add_item',
-            data={'item_text': 'A new item for an existing form'}
+            data={'programName_text': 'A new item for an existing form'}
         )
 
         self.assertEqual(Item.objects.count(), 1)
@@ -100,7 +100,7 @@ class NewItemTest(TestCase):
 
         response = self.client.post(
             f'/forms/{correct_form.id}/add_item',
-            data={'item_text': 'A new item for an existing form'}
+            data={'programName_text': 'A new item for an existing form'}
         )
 
         self.assertRedirects(response, f'/forms/{correct_form.id}/')

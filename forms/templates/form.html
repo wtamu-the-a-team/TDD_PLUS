@@ -85,9 +85,9 @@
 
 <body>
     <h1>Accreditation Form</h1>
-    <form method="POST" action="/forms/{{ forms.id }}/add_item" class="jotform-form" accept-charset="utf-8">
+    <form method="POST" action="/forms/{{ form.id }}/add_item" class="jotform-form" accept-charset="utf-8">
         
-        <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+        <!--<input name="item_text" id="id_new_item" placeholder="Enter a program name for item" />-->
 
         <input type="hidden" name="formID" value="83060914063148" />
         <div class="form-all">
@@ -162,8 +162,8 @@
                         </span>
                     </label>
                     <div id="cid_9" class="form-input jf-required">
-                        <input type="text" id="input_9" name="q9_programName9" data-type="input-textbox" class="form-textbox validate[required]"
-                            size="57" value="" data-component="textbox" required="" />
+                        <input type="text" id="id_new_programName" name="programName_text" data-type="input-textbox" class="form-textbox validate[required]"
+                            size="57" value="" data-component="textbox" required="" placeholder="Enter a program name for item" />
                     </div>
                 </li>
                 <li class="form-line jf-required" data-type="control_checkbox" id="id_19">
@@ -450,33 +450,13 @@
                 </li>
             </ul>
         </div>
-        <script>
-            JotForm.showJotFormPowered = "new_footer";
-        </script>
-        <input type="hidden" id="simple_spc" name="simple_spc" value="83060914063148" />
-        <script type="text/javascript">
-            document.getElementById("si" + "mple" + "_spc").value = "83060914063148-83060914063148";
-        </script>
-        <div class="formFooter-heightMask">
-        </div>
-        <div class="formFooter">
-            <a href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=83060914063148&utm_content=jotform_logo&utm_campaign=powered_by_jotform_le"
-                target="_blank" class="formFooter-logoLink"><img class="formFooter-logo" src="https://cdn.jotfor.ms/assets/img/logo/logo-new@1x.png"
-                    alt="" style="height: 44px;"></a>
-            <div class="formFooter-rightSide">
-                <span class="formFooter-text">
-                    Now create your own JotForm - It's free!
-                </span>
-                <a class="formFooter-button" href="https://www.jotform.com/?utm_source=formfooter&utm_medium=banner&utm_term=83060914063148&utm_content=jotform_button&utm_campaign=powered_by_jotform_le"
-                    target="_blank">Create your own JotForm</a>
-            </div>
-        </div>
+        
 
         {% csrf_token %}
     </form>
 
-    <table id="id_forms_table">
-        {% for item in forms.item_set.all %}
+    <table id="id_form_table">
+        {% for item in form.item_set.all %}
         <tr>
             <td>{{ forloop.counter }}: {{ item.text }}</td>
         </tr>

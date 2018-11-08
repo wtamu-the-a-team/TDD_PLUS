@@ -10,11 +10,11 @@ def view_form(request, form_id):
 
 def new_form(request):
     form_ = Form.objects.create()
-    Item.objects.create(text=request.POST['item_text'], form=form_)
+    Item.objects.create(text=request.POST['programName_text'], form=form_)
     return redirect(f'/forms/{form_.id}/')
 
 def add_item(request, form_id):
     form_ = Form.objects.get(id=form_id)
-    Item.objects.create(text=request.POST['item_text'], form=form_)
+    Item.objects.create(text=request.POST['programName_text'], form=form_)
     return redirect(f'/forms/{form_.id}/')
 # Create your models here testd.
