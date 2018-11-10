@@ -18,4 +18,4 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def test_can_start_a_list_for_one_user(self):
         self.browser.get(self.live_server_url)
 
-        time.sleep(10)
+        time.sleep(3)

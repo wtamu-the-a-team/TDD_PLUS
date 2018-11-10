@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ListsConfig(AppConfig):
-    name = 'lists'
+class Abet_Form_Config(AppConfig):
+    name = 'abet_form'

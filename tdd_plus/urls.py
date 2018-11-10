@@ -1,9 +1,9 @@
 from django.conf.urls import include, url
-from lists import views as list_views
-from lists import urls as list_urls
+from abet_form import views as abet_form_views
+from abet_form import urls as abet_form_urls
 
 urlpatterns = [
-    url(r'^$', list_views.home_page, name='home'),
-    url(r'^lists/', include(list_urls)),
+    url(r'^$', abet_form_views.home_page, name='home'),
+    url(r'^abet_form/', include(abet_form_urls)),
 ]
 
