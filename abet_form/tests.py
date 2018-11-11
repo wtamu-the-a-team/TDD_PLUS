@@ -49,6 +49,3 @@ class Test_POST_Method(TestCase):
 
         saved_items = Application.objects.all()
         print("=====%s=====" % saved_items.count())
-        # print(Abet_Form.objects.create())
-        # print(Abet_Form.objects.count())
-        # self.client.post('/')
