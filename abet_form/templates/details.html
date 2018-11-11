@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Application Details</title>
+    </head>
+    <body>
+        <h1>Application Details</h1>
+        <form>             
+            {% csrf_token %}
+        </form>
+    
+        <table id="id_form_table">
+            {% for item in abet_form.item_set.all %}  
+                <tr><td>{{ forloop.counter }}: {{ item.program_name }}</td></tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

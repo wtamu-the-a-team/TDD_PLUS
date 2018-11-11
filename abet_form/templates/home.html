@@ -72,7 +72,8 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"applicationForm1","qid":"1","text":
 </script>
 </head>
 <body>
-<form class="jotform-form" action="https://submit.jotform.us/submit/83060914063148/" method="post" name="form_83060914063148" id="83060914063148" accept-charset="utf-8">
+<!--<form class="jotform-form" action="https://submit.jotform.us/submit/83060914063148/" method="post" name="form_83060914063148" id="83060914063148" accept-charset="utf-8">-->
+  <form class="jotform-form" method="POST" action="/abet_form/test_post" name="form_83060914063148" id="83060914063148" accept-charset="utf-8">
   <input type="hidden" name="formID" value="83060914063148" />
   <div class="form-all">
     <ul class="form-section page-section">
@@ -369,7 +370,7 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"applicationForm1","qid":"1","text":
   </script>
   <div class="formFooter-heightMask">
   </div>
-
+  {% csrf_token %}
 </form></body>
 </html>
 <script type="text/javascript">JotForm.ownerView=true;</script>
