@@ -1,9 +1,10 @@
-from django.conf.urls import url
-from abet_form import views
+from django.conf.urls import url, include
+from abet_form import views, views_crud
 
 urlpatterns = [
-    # url(r'^new$', views.new_list, name='new_list'),
-    # url(r'^(\d+)/$', views.view_list, name='view_list'),
-    # url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
+    url(r'^$', views.home_page, name='index'),
+    url(r'^(?P<application_id>[0-9]+)/$', views.test, name='detail'),
+    url(r'test_routing', views_crud.test_routing, name='results'),
+    url(r'test_post', views_crud.test_post, name='results')
 ]
 
