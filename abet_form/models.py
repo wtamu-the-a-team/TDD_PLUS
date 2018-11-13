@@ -7,6 +7,14 @@ class Abet_Form(models.Model):
 
 class Application(models.Model):
     program_name = models.TextField(default='')
+    street_address = models.TextField(default='')
+    city = models.TextField(default='')
+    zip = models.TextField(default='')
+    contact_person = models.TextField(default='')
+    contact_phone = models.TextField(default='')
+    contact_email = models.TextField(default='')
+    program = models.TextField(default='')
+    contact_name = models.TextField(default='')
     po = models.TextField(default='')
     contact_name = models.TextField(default='')
     job_title = models.TextField(default='')

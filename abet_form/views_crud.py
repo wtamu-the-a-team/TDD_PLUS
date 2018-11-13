@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
-from abet_form.models import Application, Abet_Form
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
+from abet_form.abet_model_utils.abet_model_utils import abet_model_util
+from abet_form.models import Application
 
 def test_routing(request):
     return HttpResponse("YAY we actually work!!!")
@@ -21,3 +24,15 @@ def test_post(request):
         #return HttpResponse(f'=====you_reached_a_post with Application ID# {application_.id}+{programNameInput_}====')
 
     return HttpResponse("=====error=====")
+
+
+@csrf_exempt
+def details(request):
+    if request.method == 'POST':
+        util = abet_model_util()
+        app = Application()
+        util.transform_from_post_response(request, app)
+        app.save()
+        saved_items = Application.objects.all()
+        print("=====Current Object Count -> %s=====" % saved_items.count())
+    return render(request, 'details.html')
