@@ -1,7 +1,7 @@
 from django.db import models
 
-class Abet_Form(models.Model):
-     pass
+# class Abet_Form(models.Model):
+#      pass
 
 
 
@@ -19,5 +19,5 @@ class Application(models.Model):
     contact_name = models.TextField(default='')
     job_title = models.TextField(default='')
     text = models.TextField(default='')
-    abet_form = models.ForeignKey(Abet_Form, default=None)
+    # abet_form = models.ForeignKey(Abet_Form, default=None)
     so_1 = models.BooleanField(default=False)
