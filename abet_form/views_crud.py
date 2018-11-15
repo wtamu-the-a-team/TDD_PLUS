@@ -32,17 +32,18 @@ def test_post(request):
 def details(request):
     if request.method == 'POST':
         print ("Pass")
-        # user = User()
-        # user.save()
-        # cur_user = User.objects.first()
-        # util = abet_model_util()
-        # app = Application(user=cur_user)
-        # app.user = cur_user
-        # util.transform_from_post_response(request, app)
-        # app.save()
-        # all_apps = Application.objects.filter(user=cur_user)
-        # print(all_apps.count())
-        # for i in all_apps:
-        #     print(i.id)
+        user = User()
+        user.save()
+        cur_user = User.objects.first()
+        util = abet_model_util()
+        app = Application(user=cur_user)
+        app.user = cur_user
+        util.transform_from_post_response(request, app)
+        app.save()
+        app.save()
+        all_apps = Application.objects.filter(user=cur_user)
+        print(all_apps.count())
+        for i in all_apps:
+            print(i.id)
 
     return render(request, 'details.html')
