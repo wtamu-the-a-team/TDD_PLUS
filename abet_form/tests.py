@@ -39,13 +39,13 @@ class Test_POST_Method(TestCase):
 
     def test_simple_post_method(self):
         # print("Sending a Simple POST to root")
-        first_item = Application()
-        first_item.contact_name = "some_name"
-        first_item.save()
-
-        second_item = Application()
-        second_item.contact_name = "some_other_name"
-        second_item.save()
+        # first_item = Application()
+        # first_item.contact_name = "some_name"
+        # first_item.save()
+        #
+        # second_item = Application()
+        # second_item.contact_name = "some_other_name"
+        # second_item.save()
 
         saved_items = Application.objects.all()
         print("=====%s=====" % saved_items.count())

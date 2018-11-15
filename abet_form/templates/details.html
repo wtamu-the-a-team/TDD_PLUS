@@ -9,7 +9,7 @@
         </form>
     
         <table id="id_form_table">
-            {% for item in abet_form.item_set.all %}  
+            {% for item in abet_form.item_set.all %}
                 <tr><td>{{ forloop.counter }}: {{ item.program_name }}</td></tr>
             {% endfor %}
         </table>

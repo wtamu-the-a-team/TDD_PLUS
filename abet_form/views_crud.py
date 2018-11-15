@@ -1,9 +1,10 @@
+import uuid
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 from abet_form.abet_model_utils.abet_model_utils import abet_model_util
-from abet_form.models import Application
+from abet_form.models import Application, User
 
 def test_routing(request):
     return HttpResponse("YAY we actually work!!!")
@@ -30,10 +31,18 @@ def test_post(request):
 @csrf_exempt
 def details(request):
     if request.method == 'POST':
-        util = abet_model_util()
-        app = Application()
-        util.transform_from_post_response(request, app)
-        app.save()
-        saved_items = Application.objects.all()
-        print("=====Current Object Count -> %s=====" % saved_items.count())
+        print ("Pass")
+        # user = User()
+        # user.save()
+        # cur_user = User.objects.first()
+        # util = abet_model_util()
+        # app = Application(user=cur_user)
+        # app.user = cur_user
+        # util.transform_from_post_response(request, app)
+        # app.save()
+        # all_apps = Application.objects.filter(user=cur_user)
+        # print(all_apps.count())
+        # for i in all_apps:
+        #     print(i.id)
+
     return render(request, 'details.html')

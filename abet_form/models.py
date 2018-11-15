@@ -1,11 +1,18 @@
 from django.db import models
+import uuid
 
-# class Abet_Form(models.Model):
-#      pass
 
+class User(models.Model):
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    #
+    # def __str__(self):
+    #     return str(self.id)
+    pass
 
 
 class Application(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, default=None)
     program_name = models.TextField(default='')
     street_address = models.TextField(default='')
     city = models.TextField(default='')
@@ -19,5 +26,4 @@ class Application(models.Model):
     contact_name = models.TextField(default='')
     job_title = models.TextField(default='')
     text = models.TextField(default='')
-    # abet_form = models.ForeignKey(Abet_Form, default=None)
     so_1 = models.BooleanField(default=False)
