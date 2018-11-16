@@ -15,6 +15,7 @@
 <link type="text/css" media="print" rel="stylesheet" href="https://cdn.jotfor.ms/css/printForm.css?3.3.8310" />
 <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/566a91c2977cdfcd478b4567.css?"/>
 <link href="/abet_form/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
     .form-label-left{
         width:150px;
@@ -54,7 +55,9 @@
       } /*__INSPECT_SEPERATOR__*/
     /* Injected CSS Code */
 </style>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/buttons/form-submit-button-simple_green_apple.css?3.3.8310"/>
 </head>
 <body>
@@ -82,9 +85,10 @@
       <li class="form-line" data-type="control_text" id="id_6">
         <div id="cid_6" class="form-input-wide">
           <div id="text_6" class="form-html" data-component="text">                
-            <table id="id_form_table" class="table table-striped">
+            <table id="id_form_table" class="table table-striped table-dark">
                     <tr>
                         <td>&nbsp;</td>
+                        <td>ID</td>
                         <td>Program Name</td>
                         <td>Address</td>
                         <td>City</td>
@@ -102,6 +106,7 @@
                 {% for item in all_apps %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
+                        <td>{{ item.id }}</td>
                         <td>{{ item.program_name }}</td>
                         <td>{{ item.street_address }}</td>
                         <td>{{ item.city }}</td>
