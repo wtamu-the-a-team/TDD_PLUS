@@ -46,4 +46,4 @@ def details(request):
         for i in all_apps:
             print(i.id)
 
-    return render(request, 'details.html')
+    return render(request, 'details.html',{'all_apps':all_apps})

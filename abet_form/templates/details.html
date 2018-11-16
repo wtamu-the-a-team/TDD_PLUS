@@ -1,17 +1,131 @@
-<html>
-    <head>
-        <title>Application Details</title>
-    </head>
-    <body>
-        <h1>Application Details</h1>
-        <form>             
-            {% csrf_token %}
-        </form>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html class="supernova"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="alternate" type="application/json+oembed" href="https://www.jotform.com/oembed/?format=json&amp;url=http%3A%2F%2Fwww.jotform.com%2Fform%2F83060914063148" title="oEmbed Form"><link rel="alternate" type="text/xml+oembed" href="https://www.jotform.com/oembed/?format=xml&amp;url=http%3A%2F%2Fwww.jotform.com%2Fform%2F83060914063148" title="oEmbed Form">
+<meta property="og:title" content="Application Form for" >
+<meta property="og:url" content="https://form.jotform.us/83060914063148" >
+<meta property="og:description" content="Please click the link to complete this form.">
+<link rel="shortcut icon" href="https://cdn.jotfor.ms/favicon.ico">
+<link rel="canonical" href="https://form.jotform.us/83060914063148" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="HandheldFriendly" content="true" />
+<title>Application Details</title>
+<link href="https://cdn.jotfor.ms/static/formCss.css?3.3.8310" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/nova.css?3.3.8310" />
+<link type="text/css" media="print" rel="stylesheet" href="https://cdn.jotfor.ms/css/printForm.css?3.3.8310" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/566a91c2977cdfcd478b4567.css?"/>
+<link href="/abet_form/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+    .form-label-left{
+        width:150px;
+    }
+    .form-line{
+        padding-top:12px;
+        padding-bottom:12px;
+    }
+    .form-label-right{
+        width:150px;
+    }
+    body, html{
+        margin:0;
+        padding:0;
+        background:#fff;
+    }
+
+    .form-all{
+        margin:0px auto;
+        padding-top:0px;
+        width:100%;
+        color:#555 !important;
+        font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, sans-serif;
+        font-size:14px;
+    }
+</style>
+
+<style type="text/css" id="form-designer-style">
+    /* Injected CSS Code */
+.form-label.form-label-auto {
+        
+      display: block;
+      float: none;
+      text-align: left;
+      width: 100%;
     
-        <table id="id_form_table">
-            {% for item in abet_form.item_set.all %}
-                <tr><td>{{ forloop.counter }}: {{ item.program_name }}</td></tr>
-            {% endfor %}
-        </table>
-    </body>
+      } /*__INSPECT_SEPERATOR__*/
+    /* Injected CSS Code */
+</style>
+
+<link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/buttons/form-submit-button-simple_green_apple.css?3.3.8310"/>
+</head>
+<body>
+<form class="jotform-form" method="POST" action="/abet_form/details" name="form_83060914063148" id="83060914063148" accept-charset="utf-8">
+    {% csrf_token %}
+  <div class="form-all">
+    <ul class="form-section page-section">
+      <li id="cid_1" class="form-input-wide" data-type="control_head">
+        <div style="display:table;width:100%">
+          <div class="form-header-group hasImage">
+            <div class="header-text httal htvam">
+              <h3 id="header_1" class="form-header" data-component="header">
+                Program Accreditation
+              </h3>
+              <div id="subHeader_1" class="form-subHeader">
+                Application Details
+              </div>
+            </div>
+            <div class="header-logo">
+              <img src="https://www.jotform.com/uploads/flocraigs/form_files/abetlogo.5bdefc0b954189.69185634.png" alt="" width="75" class="header-logo-right" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_text" id="id_6">
+        <div id="cid_6" class="form-input-wide">
+          <div id="text_6" class="form-html" data-component="text">                
+            <table id="id_form_table" class="table table-striped">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Program Name</td>
+                        <td>Address</td>
+                        <td>City</td>
+                        <td>Zip</td>
+                        <td>Contact Person</td>
+                        <td>Contact Phone</td>
+                        <td>Contact Email</td>
+                        <td>Program</td>
+                        <td>Contact Name</td>
+                        <td>PO</td>
+                        <td>Job Title</td>
+                        <td>Text</td>
+                    </tr>
+                            
+                {% for item in all_apps %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.program_name }}</td>
+                        <td>{{ item.street_address }}</td>
+                        <td>{{ item.city }}</td>
+                        <td>{{ item.zip }}</td>
+                        <td>{{ item.contact_person }}</td>
+                        <td>{{ item.contact_phone }}</td>
+                        <td>{{ item.contact_email }}</td>
+                        <td>{{ item.program }}</td>
+                        <td>{{ item.contact_name }}</td>
+                        <td>{{ item.po }}</td>
+                        <td>{{ item.job_title }}</td>
+                        <td>{{ item.text }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="formFooter-heightMask">
+  </div>
+</form></body>
 </html>
+
+
+
