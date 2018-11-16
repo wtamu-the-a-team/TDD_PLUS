@@ -4,8 +4,9 @@ from django.http import HttpRequest
 
 from abet_form.views import home_page
 from abet_form.views_crud import test_routing
-from abet_form.models import Application
+from abet_form.models import Application, User
 from django.template.loader import render_to_string
+
 
 class HomePageTest(TestCase):
 
@@ -13,7 +14,13 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
+
 class Test_POST_Method(TestCase):
+
+    def setUp(self):
+        user = User()
+        user.save()
+        self.assertEqual(User.objects.count(), 1)
 
     def test_root_url_resolves_to_home_page_view(self):
         found = resolve('/')
@@ -49,3 +56,12 @@ class Test_POST_Method(TestCase):
 
         saved_items = Application.objects.all()
         print("=====%s=====" % saved_items.count())
+
+    def test_post_add_application(self):
+        object_to_post = ""
+
+    def tearDown(self):
+        Application.objects.all().delete()
+        self.assertEqual(Application.objects.count(), 0)
+        User.objects.all().delete()
+        self.assertEqual(User.objects.count(), 0)

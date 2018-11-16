@@ -1,5 +1,13 @@
+import json
 
 class abet_model_util:
+
+    def is_json(self, json_in):
+        try:
+            json_object = json.loads(json_in)
+        except ValueError as e:
+            return False
+        return True
 
     def transform_from_post_response(self, request, app):
         for key, value in request.POST.items():
