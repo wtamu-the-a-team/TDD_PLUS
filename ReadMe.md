@@ -3,7 +3,7 @@ CONTENTS OF THIS FILE
 * Introduction
 * Requirements
 * Project File
-* Credts & Contact
+* Credits & Contact
 
 
 
