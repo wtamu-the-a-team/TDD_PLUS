@@ -1,20 +1,18 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
+
+from abet_form.models import User, Application
 from abet_form_utils import abet_form_utils
 import time, re
-
 
 MAX_WAIT = 10
 
 
-class NewVisitorTest(StaticLiveServerTestCase):
+class FailureFormSubmissions(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.abet_form_util = abet_form_utils.abet_form_util(self.browser)
-
-    def tearDown(self):
-        self.browser.quit()
 
     def test_invalid_form(self):
         self.browser.get(self.live_server_url)
@@ -32,16 +30,39 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # This should be populated as that means the error expression True
         self.assertNotEqual(self.abet_form_util.get_submit_error(), None)
 
+    def tearDown(self):
+        Application.objects.all().delete()
+        self.assertEqual(Application.objects.count(), 0)
+        User.objects.all().delete()
+        self.assertEqual(User.objects.count(), 0)
+        pass
+        self.browser.quit()
+
+
+class SuccessFormSubmissions(StaticLiveServerTestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.abet_form_util = abet_form_utils.abet_form_util(self.browser)
+
+    def tearDown(self):
+        Application.objects.all().delete()
+        self.assertEqual(Application.objects.count(), 0)
+        User.objects.all().delete()
+        self.assertEqual(User.objects.count(), 0)
+        self.browser.quit()
+
     def test_valid_form(self):
         self.browser.get(self.live_server_url)
         self.abet_form_util.fill_valid_form()
 
         time.sleep(3)
-        # Click submit button
-        self.abet_form_util.click_submit()
-        time.sleep(3)
+
         # If we don't scroll to the botton the page the footer overlap the submit button
         self.abet_form_util.scroll_to_bottom_of_page()
+        time.sleep(3)
+        # Click submit button
+        self.abet_form_util.click_submit()
         time.sleep(3)
         # This should be populated as that means the error expression True
         self.assertEqual(self.abet_form_util.get_submit_error(), None)

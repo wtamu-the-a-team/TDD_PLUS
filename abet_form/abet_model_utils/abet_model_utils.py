@@ -32,3 +32,4 @@ class abet_model_util:
                 app.job_title = value
             else:
                 pass
+
