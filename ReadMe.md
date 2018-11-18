@@ -23,8 +23,8 @@ User Stories- Gherkin Notation
 
 * Selenium Test Cases
 
-Feature: User desires to view existing application (Read and Show Stored Application)
-Scenario: 
+-Feature: User desires to view existing application (Read and Show Stored Application)
+-Scenario: 
 	User has an existing application stored
 	Given the user has a login profile
 	And the username and password are correct
