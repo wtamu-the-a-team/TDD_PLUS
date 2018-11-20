@@ -30,7 +30,7 @@ def get_application_json(request, guid):
 
 
 # Update Application
-def update(request, guid):
+def update_sandbox(request, guid):
     if request.method == 'POST':
         for key, value in request.POST.items():
             print("key %s <--> value %s" % (key, value))
@@ -69,13 +69,13 @@ def form_submit(request):
     if request.method == 'POST':
         util = abet_model_util()
         if util.is_json(json_in=request.body):
-            print("TIME FOR JSON")
-            received_json_data = json.loads(request.body)
-            print(received_json_data)
+            # print("TIME FOR JSON")
+            json.loads(request.body)
+            # print(received_json_data)
         else:
-            print("TIME FOR HTML")
-            for key, value in request.POST.items():
-                print("key %s <--> value %s" % (key, value))
+            # print("TIME FOR HTML")
+            # for key, value in request.POST.items():
+            #     print("key %s <--> value %s" % (key, value))
             util = abet_model_util()
             app = Application(user=cur_user)
             app.user = cur_user
@@ -109,16 +109,16 @@ def get_application(request, app_id):
 @csrf_exempt
 def update_application(request):
     if request.method == 'POST':
-        print("We have a POST")
+        # print("We have a POST")
         cur_id = request.POST.getlist('id')[0]
         if cur_id is None:
             return HttpResponse("Please use a valid Application ID")
         helper = abet_model_json_helper.abet_model_json_helper()
         app = Application.objects.filter(id=cur_id).first()
         for key, value in request.POST.items():
-            print("key %s <--> value %s" % (key, value))
+            # print("key %s <--> value %s" % (key, value))
             helper.update_model_from_json_element(app, key, value)
-        print(app.job_title)
+        # print(app.job_title)
         app.save()
         return render(request, 'details.html', {'all_apps': Application.objects.filter(id=app.id)})
     else:

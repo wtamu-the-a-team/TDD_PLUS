@@ -5,7 +5,7 @@ from abet_form.models import Application
 
 def home_page(request):
     if request.method == 'POST':
-        print("Trying to do a POST")
+        return HttpResponse("Trying to do a POST")
     return render(request, 'home.html')
 
 

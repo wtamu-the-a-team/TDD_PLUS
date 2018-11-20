@@ -18,7 +18,7 @@ class HomePageTest(TestCase):
         The method will return a correctly rendered home page
     '''
     def test_uses_home_template(self):
-        print("Starting test_uses_home_template")
+        # print("Starting test_uses_home_template")
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 

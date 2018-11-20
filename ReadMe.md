@@ -32,6 +32,8 @@ Project File
 All our project files are available for download from our GitHub repository:
 https://github.com/wtamu-the-a-team/TDD_PLUS/tree/TDD_PLUS_PLUS_SB
 
+Notes:
+* Database Migrations reached an unsustainable level so were purged and database was recreated. ~12 were deteleted.
 
 
 Credit & Contact
