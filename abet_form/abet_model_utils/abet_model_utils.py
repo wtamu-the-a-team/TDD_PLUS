@@ -1,6 +1,35 @@
 import json
 
 
+def get_unknown_application_id_error():
+    return "Sorry, Unknown Application ID"
+
+
+def get_unsupported_application_get_submission():
+    return "Sorry, we don't support application GET submissions"
+
+
+def get_unsupported_application_updates_get():
+    return "Sorry, we don't support application GET updates"
+
+
+def get_invalid_application_id():
+    return "Please use a valid Application ID"
+
+
+def get_application_does_not_exist_error():
+    return "Sorry, that application doesn't exist"
+
+
+def get_simple_post_response():
+    return "=====you_reached_a_post====="
+
+def dumb_success_message():
+    return "YAY we actually work!!!"
+
+def success_update_message():
+    return "I have been updated"
+
 class abet_model_util:
 
     def is_json(self, json_in):

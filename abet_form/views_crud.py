@@ -8,18 +8,21 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
-from abet_form.abet_model_utils.abet_model_utils import abet_model_util
+from abet_form.abet_model_utils import abet_model_utils
+from abet_form.abet_model_utils.abet_model_utils import abet_model_util, get_unsupported_application_get_submission, \
+    get_unsupported_application_updates_get, get_invalid_application_id, get_application_does_not_exist_error, \
+    get_simple_post_response, dumb_success_message
 from abet_form.models import Application, User
 from abet_form_utils import abet_model_json_helper
 
 
 def test_routing(request):
-    return HttpResponse("YAY we actually work!!!")
+    return HttpResponse(dumb_success_message())
 
 
 def test_simple_url_post(request):
     if request.method == 'POST':
-        return HttpResponse("=====you_reached_a_post=====")
+        return HttpResponse(get_simple_post_response())
     return HttpResponse("=====error=====")
 
 
@@ -77,7 +80,7 @@ def form_submit(request):
 def remove_application(request, app_id):
     app = Application.objects.filter(id=app_id).first()
     if app is None:
-        return HttpResponse("Sorry, that application doesn't exist")
+        return HttpResponse(get_application_does_not_exist_error())
     else:
         app.delete()
         all_apps = Application.objects.filter(user=app.user)
@@ -95,7 +98,7 @@ def add_application(request, user_id):
         # print(app.id)
         return redirect(f'/abet_form/{app.id}/get_application')
     else:
-        return HttpResponse("Sorry, we don't support application GET submissions")
+        return HttpResponse(get_unsupported_application_get_submission())
     # all_apps = Application.objects.filter(user=user)
     # return render(request, 'details.html', {'all_apps': all_apps})
 
@@ -104,7 +107,7 @@ def add_application(request, user_id):
 def get_application(request, app_id):
     apps = Application.objects.filter(id=app_id)
     if apps.count() is 0:
-        return HttpResponse("Sorry, Unknown Application ID")
+        return HttpResponse(abet_model_utils.get_unknown_application_id_error())
     return render(request, 'details.html', {'all_apps': Application.objects.filter(id=app_id)})
 
 
@@ -114,7 +117,7 @@ def update_application(request):
         # print("We have a POST")
         cur_id = request.POST.getlist('id')[0]
         if cur_id is None:
-            return HttpResponse("Please use a valid Application ID")
+            return HttpResponse(get_invalid_application_id())
         helper = abet_model_json_helper.abet_model_json_helper()
         app = Application.objects.filter(id=cur_id).first()
         for key, value in request.POST.items():
@@ -124,4 +127,4 @@ def update_application(request):
         app.save()
         return render(request, 'details.html', {'all_apps': Application.objects.filter(id=app.id)})
     else:
-        return HttpResponse("Sorry, we don't support application GET updates")
+        return HttpResponse(get_unsupported_application_updates_get())

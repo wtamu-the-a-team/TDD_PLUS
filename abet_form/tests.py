@@ -3,6 +3,9 @@ from django.urls import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 
+from abet_form.abet_model_utils import abet_model_utils
+from abet_form.abet_model_utils.abet_model_utils import get_simple_post_response, dumb_success_message, \
+    success_update_message
 from abet_form.views import home_page
 from abet_form.views_crud import test_routing
 from abet_form.models import Application, User
@@ -54,7 +57,7 @@ class Test_GET_Method(TestCase):
     def test_crud_retieve_unknown(self):
         url = "/abet_form/%s/get_application" % "00000000-0000-0000-0000-000000000000"
         response = self.client.get(url)
-        self.assertIn('Sorry, Unknown Application ID', response.content.decode())
+        self.assertIn(abet_model_utils.get_unknown_application_id_error(), response.content.decode())
 
     # remove all users and applications form the system
     def tearDown(self):
@@ -109,7 +112,7 @@ class Test_POST_Method(TestCase):
         request = HttpRequest()
         response = test_routing(request)
         html = response.content.decode('utf8')
-        expected_html = r'YAY we actually work!!!'
+        expected_html = dumb_success_message()
         self.assertEqual(html, expected_html)
 
     '''
@@ -122,7 +125,7 @@ class Test_POST_Method(TestCase):
 
     def test_simple_post_method(self):
         response = self.client.post('/abet_form/test_simple_url_post', data={'key': 'value'})
-        self.assertIn('=====you_reached_a_post=====', response.content.decode())
+        self.assertIn(get_simple_post_response(), response.content.decode())
 
     '''
     Feature: Add functionality executing correctly (Add Application)  
@@ -201,10 +204,10 @@ class Test_POST_Method(TestCase):
         self.assertTemplateUsed(response, 'details.html')
         self.assertContains(response, n_app.id)
         self.assertContains(response, n_app.job_title)
-        n_app.job_title = "I have been updated"
+        n_app.job_title = success_update_message()
         response = self.client.post('/abet_form/update_application',
                                     data={"id": n_app.id, "job_title": n_app.job_title})
-        self.assertContains(response, "I have been updated")
+        self.assertContains(response, success_update_message())
 
     '''
     Feature: Delete functionality executing correctly (Delete Application)  
