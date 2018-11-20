@@ -37,20 +37,6 @@ def update_sandbox(request, guid):
     return HttpResponse(guid)
 
 
-# Add Application
-@csrf_exempt
-def add_application(request, user_id):
-    # print("add_application: user_id -> %s" % user_id)
-    user = User.objects.get(uuid_id=user_id)
-    if request.method == 'POST':
-        app = Application(user=user)
-        app.save()
-    else:
-        return HttpResponse("Sorry, we don't support application GET submissions")
-    all_apps = Application.objects.filter(user=user)
-    return render(request, 'details.html', {'all_apps': all_apps})
-
-
 # View all Applications
 @csrf_exempt
 def view_user_applications(request, user_id):
@@ -96,6 +82,22 @@ def remove_application(request, app_id):
         app.delete()
         all_apps = Application.objects.filter(user=app.user)
         return render(request, 'details.html', {'all_apps': all_apps})
+
+
+# Add Application
+@csrf_exempt
+def add_application(request, user_id):
+    # print("add_application: user_id -> %s" % user_id)
+    user = User.objects.get(uuid_id=user_id)
+    if request.method == 'POST':
+        app = Application(user=user)
+        app.save()
+        # print(app.id)
+        return redirect(f'/abet_form/{app.id}/get_application')
+    else:
+        return HttpResponse("Sorry, we don't support application GET submissions")
+    # all_apps = Application.objects.filter(user=user)
+    # return render(request, 'details.html', {'all_apps': all_apps})
 
 
 @csrf_exempt

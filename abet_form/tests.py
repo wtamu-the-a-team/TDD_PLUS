@@ -153,14 +153,13 @@ class Test_POST_Method(TestCase):
 
     def test_crud_create_application(self):
         l_user = User.objects.first()
-        app = Application()
-        app.user = l_user
         url = "/abet_form/%s/add_application" % l_user.uuid_id
         response = self.client.post(url, data={'user_id': l_user})
         # Ensure that only one application has been added
         self.assertEqual(Application.objects.all().count(), 1)
         # Ensure that we display the webpage as expected
-        self.assertTemplateUsed(response, 'details.html')
+        app = Application.objects.first()
+        self.assertRedirects(response, f'/abet_form/{app.id}/get_application')
 
     '''
     Feature: Read functionality executing correctly (Read Application)  
