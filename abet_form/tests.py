@@ -8,8 +8,8 @@ from abet_form.views_crud import test_routing
 from abet_form.models import Application, User
 from django.template.loader import render_to_string
 
-class HomePageTest(TestCase):
 
+class HomePageTest(TestCase):
     '''
     Feature: (Test Root Page Returns Home)
     Scenario:
@@ -17,6 +17,7 @@ class HomePageTest(TestCase):
         When the get method is called on
         The method will return a correctly rendered home page
     '''
+
     def test_uses_home_template(self):
         # print("Starting test_uses_home_template")
         response = self.client.get('/')
@@ -35,6 +36,7 @@ class Test_GET_Method(TestCase):
         When the get method is called on  
         The method will return an error message 
     '''
+
     def test_crud_create_application(self):
         l_user = User.objects.first()
         url = "/abet_form/%s/add_application" % l_user.uuid_id
@@ -48,6 +50,7 @@ class Test_GET_Method(TestCase):
         When the get method is called on  
         The method will return an error message 
     '''
+
     def test_crud_retieve_unknown(self):
         url = "/abet_form/%s/get_application" % "00000000-0000-0000-0000-000000000000"
         response = self.client.get(url)
@@ -74,6 +77,7 @@ class Test_POST_Method(TestCase):
         When the get method is called on  
         The method will return a correctly rendered root page 
     '''
+
     def test_root_url_resolves_to_home_page_view(self):
         found = resolve('/')
         self.assertEqual(found.func, home_page)
@@ -85,13 +89,13 @@ class Test_POST_Method(TestCase):
         When the get method is called on  
         The method will return a correctly rendered home  
     '''
+
     def test_home_page_returns_correct_html(self):
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf8')
         expected_html = render_to_string('home.html')
         self.assertEqual(html, expected_html)
-
 
     '''
     Feature: (Test URL GET Routing)  
@@ -100,6 +104,7 @@ class Test_POST_Method(TestCase):
         When the get method is called on  
         The method will print “Pass” to the console  
     '''
+
     def test_correct_url_routing(self):
         request = HttpRequest()
         response = test_routing(request)
@@ -114,6 +119,7 @@ class Test_POST_Method(TestCase):
         When the post method directs to the correct URL method  
         The method will print “Pass” to the console 
     '''
+
     def test_simple_post_method(self):
         response = self.client.post('/abet_form/test_simple_url_post', data={'key': 'value'})
         self.assertIn('=====you_reached_a_post=====', response.content.decode())
@@ -127,6 +133,7 @@ class Test_POST_Method(TestCase):
         The application will be redirected to the details page  
         And print “Pass” to the console  
     '''
+
     def test_crud_create_application(self):
         l_user = User.objects.first()
         url = "/abet_form/%s/add_application" % l_user.uuid_id
@@ -143,6 +150,7 @@ class Test_POST_Method(TestCase):
         When a duplicate application is added to the database  
         The method will print a notification to the console 
     '''
+
     def test_crud_create_application(self):
         l_user = User.objects.first()
         app = Application()
@@ -164,6 +172,7 @@ class Test_POST_Method(TestCase):
         The data will be displayed on the details page  
         And print “Pass” to the console  
     '''
+
     def test_crud_read_function(self):
         l_user = User.objects.first()
         n_app = Application(user=l_user)
@@ -182,6 +191,7 @@ class Test_POST_Method(TestCase):
         The application will be redirected to the details page  
         And print “Pass” to the console 
     '''
+
     def test_crud_update_function(self):
         l_user = User.objects.first()
         n_app = Application(user=l_user)
@@ -193,7 +203,8 @@ class Test_POST_Method(TestCase):
         self.assertContains(response, n_app.id)
         self.assertContains(response, n_app.job_title)
         n_app.job_title = "I have been updated"
-        response = self.client.post('/abet_form/update_application', data={"id" : n_app.id, "job_title": n_app.job_title})
+        response = self.client.post('/abet_form/update_application',
+                                    data={"id": n_app.id, "job_title": n_app.job_title})
         self.assertContains(response, "I have been updated")
 
     '''
@@ -204,6 +215,7 @@ class Test_POST_Method(TestCase):
         The application will be redirected to the list of applications created by the user  
         And print “Pass” to the console  
     '''
+
     def test_crud_delete_function(self):
         l_user = User.objects.first()
         n_app = Application(user=l_user)

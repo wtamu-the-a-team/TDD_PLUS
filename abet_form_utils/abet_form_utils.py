@@ -1,6 +1,7 @@
 from selenium import webdriver
 import time, re
 
+
 class abet_form_util:
 
     def __init__(self, browser):
@@ -15,6 +16,7 @@ class abet_form_util:
     '''
         Job Title Elements
     '''
+
     def get_job_title_element(self):
         return self.browser.find_element_by_id('input_27')
 
@@ -27,6 +29,7 @@ class abet_form_util:
     '''
         Program Name Elements
     '''
+
     def get_program_name_element(self):
         return self.browser.find_element_by_id('input_9')
 
@@ -39,6 +42,7 @@ class abet_form_util:
     '''
         Contact Phone Elements
     '''
+
     def get_contact_phone_element(self):
         return self.browser.find_element_by_id('input_13')
 
@@ -51,12 +55,14 @@ class abet_form_util:
     '''
         Acknowledgement
     '''
+
     def click_acknowledge(self):
         self.browser.find_element_by_id('input_25_0').click()
 
     '''
         Program Educational Objectives Elements
     '''
+
     def get_po_element(self):
         return self.browser.find_element_by_id('input_16')
 
@@ -69,18 +75,21 @@ class abet_form_util:
     '''
         Student Outcomes
     '''
+
     def click_first_so(self):
         self.browser.find_element_by_id('input_22_0').click()
 
     '''
         Program Type
     '''
+
     def click_first_program_type(self):
         self.browser.find_element_by_id('input_19_0').click()
 
     '''
         Various Functions
     '''
+
     def fill_valid_form(self):
         self.update_program_name("Some Program")
         self.update_contact_phone("1112223456")

@@ -1,5 +1,6 @@
 import json
 
+
 class abet_model_util:
 
     def is_json(self, json_in):
@@ -32,4 +33,3 @@ class abet_model_util:
                 app.job_title = value
             else:
                 pass
-

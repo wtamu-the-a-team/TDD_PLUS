@@ -6,4 +6,3 @@ urlpatterns = [
     url(r'^$', abet_form_views.home_page, name='home'),
     url(r'^abet_form/', include(abet_form_urls)),
 ]
-
