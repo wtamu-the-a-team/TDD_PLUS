@@ -63,8 +63,8 @@ class Test_GET_Method(TestCase):
     def tearDown(self):
         Application.objects.all().delete()
         self.assertEqual(Application.objects.count(), 0)
-        User.objects.all().delete()
-        self.assertEqual(User.objects.count(), 0)
+        # User.objects.all().delete()
+        # self.assertEqual(User.objects.count(), 0)
 
 
 class Test_POST_Method(TestCase):
@@ -232,5 +232,5 @@ class Test_POST_Method(TestCase):
     def tearDown(self):
         Application.objects.all().delete()
         self.assertEqual(Application.objects.count(), 0)
-        User.objects.all().delete()
-        self.assertEqual(User.objects.count(), 0)
+        # User.objects.all().delete()
+        # self.assertEqual(User.objects.count(), 0)

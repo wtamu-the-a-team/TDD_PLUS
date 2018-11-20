@@ -1,6 +1,8 @@
 from selenium import webdriver
 import time, re
 
+from abet_form.models import Application, User
+
 
 class abet_form_util:
 
@@ -91,19 +93,56 @@ class abet_form_util:
     '''
 
     def fill_valid_form(self):
+        str_lookup = []
         self.update_program_name("Some Program")
+        str_lookup.append("Some Program")
         self.update_contact_phone("1112223456")
+        str_lookup.append("1112223456")
         self.update_job_title("Some Title")
+        str_lookup.append("Some Title")
         self.update_po("SOME PO")
+        str_lookup.append("SOME PO")
         self.click_first_program_type()
+        str_lookup.append("Some Program")
         self.click_acknowledge()
+        str_lookup.append("Some Program")
         self.click_first_so()
+        str_lookup.append("Some Program")
+        return str_lookup
+
+    '''
+        Create Various Functions
+    '''
+
+    def create_dummy_applications(self, user=None):
+        list_id = []
+        if user is None:
+            print("User Count -> %s" % User.objects.all().count())
+            raise Exception("You Need to Specify Valid User")
+        for i in range(0, 10, 1):
+            app = Application()
+            app.user = user
+            app.save()
+            list_id.append(app.id)
+        return list_id
+
+    '''
+        Click the Submit Button on the Page
+    '''
 
     def click_submit(self):
         self.browser.find_element_by_id('input_2').click()
 
+    '''
+        Find Error Message on Page
+    '''
+
     def get_submit_error(self):
         return re.search(r'There are errors on the form. Please fix them before continuing.', self.browser.page_source)
+
+    '''
+        Scroll to Bottom of Page
+    '''
 
     def scroll_to_bottom_of_page(self):
         SCROLL_PAUSE_TIME = 0.5
