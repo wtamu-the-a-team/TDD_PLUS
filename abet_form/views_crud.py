@@ -100,7 +100,9 @@ def remove_application(request, app_id):
 
 @csrf_exempt
 def get_application(request, app_id):
-    # return HttpResponse(Application.objects.filter(id=app_id))
+    apps = Application.objects.filter(id=app_id)
+    if apps.count() is 0:
+        return HttpResponse("Sorry, Unknown Application ID")
     return render(request, 'details.html', {'all_apps': Application.objects.filter(id=app_id)})
 
 

@@ -13,7 +13,15 @@ class FailureFormSubmissions(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.abet_form_util = abet_form_utils.abet_form_util(self.browser)
-
+    '''
+    Feature: Application failed to be stored (Fail Adding Incomplete Application)  
+    Scenario:  
+        User fills out application  
+        Given submit button is clicked on application  
+        When the form validation finds an input error  
+        The program will not store the application   
+        And notify the user of the input error  
+    '''
     def test_invalid_form(self):
         self.browser.get(self.live_server_url)
         self.abet_form_util.update_job_title("SOME_JOB")
@@ -52,6 +60,14 @@ class SuccessFormSubmissions(StaticLiveServerTestCase):
         self.assertEqual(User.objects.count(), 0)
         self.browser.quit()
 
+    '''
+    Feature: Application is stored to database (Add Complete Application)  
+    Scenario:  
+        User fills out application  
+        Given Submit button is clicked on application  
+        When the form passes all required field validation  
+        The program will create a record in database with the data from the application  
+    '''
     def test_valid_form(self):
         self.browser.get(self.live_server_url)
         self.abet_form_util.fill_valid_form()
